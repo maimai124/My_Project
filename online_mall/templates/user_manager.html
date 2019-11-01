@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>城院书城-用户管理</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+</head>
+<body>
+	<div class="header_con">
+		<div class="header">
+			<div class="welcome fl">欢迎来到城院书城!</div>
+			<div class="fr">
+				<div class="login_btn fl">
+					<a href="login.html">登录</a>
+					<span>|</span>
+					<a href="register.html">注册</a>
+				</div>
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="user_center_info.html">用户中心</a>
+					<span>|</span>
+					<a href="cart.html">我的购物车</a>
+					<span>|</span>
+					<a href="user_center_order.html">我的订单</a>
+				</div>
+			</div>
+		</div>		
+	</div>
+
+	<div class="search_bar clearfix">
+		<a href="/mall/index" class="logo fl"><img src="/static/images/logo.png" style="width: 160px; height: 53px;"></a>
+		<div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;用户管理</div>
+		<div class="search_con fr">
+			<input type="text" class="input_text fl" name="" placeholder="搜索商品">
+			<input type="button" class="input_btn fr" name="" value="搜索">
+		</div>		
+	</div>
+
+	<div class="total_count">全部用户<em>2</em>人</div>
+	<ul class="cart_list_th clearfix">
+		<li class="col02">用户id</li>
+		<li class="col02">用户名称</li>
+		<li class="col03">用户权限</li>
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+		<li class="col04">用户余额</li>
+		<li class="col05">用户消费</li>
+		<li class="col06">操作</li>
+	</ul>
+    {% for i in users %}
+	<ul class="cart_list_td clearfix">
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+		<li class="col02">{{ i.0 }}</li>
+        <li class="col04">{{ i.2 }}</li>
+
+        {% if i.1 == 0 %}
+		<li class="col04">普通用户<br>
+        {% elif i.1 == 1 %}
+        <li class="col04">会员用户<br>
+        {% elif i.1 == 2 %}
+        <li class="col04">管理员<br>
+        {% else %}
+        <li class="col04">超级管理员<br>
+        {% endif %}
+		<li class="col02">{{ i.3 }}元</li>
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+		<li class="col02">{{ i.4 }}元</li>
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+        <li class="col01"><a href="/mall/user_change/?u_id={{ i.0 }}">修改</a></li>
+		<li class="col01"><a href="/mall/user_manager/?u_id={{ i.0 }}">删除</a></li>
+	</ul>
+    {% endfor %}
+	
+
+
+	<div class="footer">
+		<p>CopyRight © 2019 浙江大学城市学院实训二班 All Rights Reserved</p>
+	</div>
+	
+</body>
+</html>
